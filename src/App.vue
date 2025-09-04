@@ -2,7 +2,7 @@
  * @Author: 袁锐城
  * @Date: 2025-09-02 00:40:08
  * @LastEditors: Please set LastEditors
- * @LastEditTime: 2025-09-04 01:04:27
+ * @LastEditTime: 2025-09-05 01:00:48
  * @Description: 
 -->
 <template>
@@ -26,17 +26,27 @@
         </button>
       </div>
     </div>
-    <div class="h-full flex-1">
-      <ProviderSelect />
+    <div class="h-full flex-1 flex items-center">
+      <div class="w-[80%] mx-auto h-full">
+        <div class="h-[85%] flex items-center">
+          <ProviderSelect :item="providerDataList" v-model="currentModel" />
+        </div>
+        <div class="h-[15%] flex items-center">
+          <MessageInput />
+        </div>
+      </div>
     </div>
   </div>
 </template>
 
 <script lang="ts" setup>
-import { ConversationProps } from "./type";
+import { ref } from "vue";
+import { ConversationProps, ProviderProps } from "./type";
 import ConversationList from "./components/ConversationList.vue";
 import ProviderSelect from "./components/ProviderSelect.vue";
+import MessageInput from "./components/MessageInput.vue";
 import { Icon } from "@iconify/vue";
+const currentModel = ref<string>("");
 const conversationsDataList: ConversationProps[] = [
   {
     id: "1",
@@ -102,6 +112,24 @@ const conversationsDataList: ConversationProps[] = [
     createdAt: 3,
     updatedAt: 3,
     providerId: 3,
+  },
+];
+const providerDataList: ProviderProps[] = [
+  {
+    id: 1,
+    name: "文心一言",
+    avatar: "https://www.radix-vue.com/logo.svg",
+    createdAt: "2025-09-04",
+    updatedAt: "2025-09-04",
+    models: ["文心一言4.0", "文心一言3.5", "文心一言3.0"],
+  },
+  {
+    id: 2,
+    name: "通义千问",
+    avatar: "https://www.radix-vue.com/logo.svg",
+    createdAt: "2025-09-04",
+    updatedAt: "2025-09-04",
+    models: ["通义千问4.0", "通义千问3.5", "通义千问3.0"],
   },
 ];
 </script>

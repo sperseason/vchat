@@ -6,3 +6,13 @@ export interface ConversationProps {
   updatedAt: number;
   providerId: number;
 }
+export interface ProviderProps {
+  id: number;
+  name: string;
+  title?: string;
+  desc?: string;
+  avatar?: string;
+  createdAt: string;
+  updatedAt: string;
+  models: string[];
+}
